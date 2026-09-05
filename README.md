@@ -1,16 +1,125 @@
-# React + Vite
+# 🎓 StudentHub
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A full-stack student and faculty management portal designed to provide a centralized platform for managing student information, study materials, assignments, announcements, timetables, and academic activities.
 
-Currently, two official plugins are available:
+## 📌 About the Project
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+StudentHub is a web-based academic management system built using React, Node.js, Express, and MongoDB.
 
-## React Compiler
+The application provides separate experiences for **students and faculty members**, allowing students to access academic resources while faculty can manage announcements, assignments, materials, and other academic information.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## ✨ Features
 
-## Expanding the Oxlint configuration
+### 👨‍🎓 Student Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+- Student registration and login
+- Protected student dashboard
+- Student profile management
+- View and manage student information
+- Access study materials
+- Subject-wise study resources
+- View assignments
+- Track pending and completed assignments
+- Study progress calculation
+- View class timetable
+- View college announcements
+
+### 👩‍🏫 Faculty Features
+
+- Faculty registration and login
+- Protected faculty dashboard
+- Faculty profile management
+- Create and manage announcements
+- Create and manage assignments
+- Upload and manage study materials
+- Manage academic resources
+- Faculty academic management interface
+
+### 🔐 Authentication & Security
+
+- Role-based access for students and faculty
+- Protected frontend routes
+- Backend API endpoints
+- Environment variables for sensitive configuration
+- MongoDB database integration
+
+## 🛠️ Technologies Used
+
+### Frontend
+
+- React.js
+- Vite
+- React Router
+- JavaScript
+- HTML5
+- CSS3
+
+### Backend
+
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+
+### Development Tools
+
+- Visual Studio Code
+- Git
+- GitHub
+- GitHub Desktop
+- npm
+
+## 🏗️ Project Structure
+
+```text
+StudentHub/
+│
+├── backend/
+│   ├── models/
+│   │   ├── Announcement.js
+│   │   ├── Assignment.js
+│   │   ├── Faculty.js
+│   │   ├── Material.js
+│   │   ├── Student.js
+│   │   └── User.js
+│   │
+│   ├── routes/
+│   │   ├── announcementRoutes.js
+│   │   ├── assignmentRoutes.js
+│   │   ├── authRoutes.js
+│   │   ├── facultyRoutes.js
+│   │   ├── materialRoutes.js
+│   │   └── studentRoutes.js
+│   │
+│   ├── uploads/
+│   ├── .env
+│   ├── .env.example
+│   ├── package.json
+│   └── server.js
+│
+├── public/
+│   └── pdfs/
+│
+├── src/
+│   ├── pages/
+│   ├── assets/
+│   ├── App.jsx
+│   ├── Login.jsx
+│   ├── Signup.jsx
+│   ├── StudentDashboard.jsx
+│   ├── FacultyDashboard.jsx
+│   ├── Profile.jsx
+│   ├── FacultyProfile.jsx
+│   ├── Assignments.jsx
+│   ├── FacultyAssignments.jsx
+│   ├── Announcements.jsx
+│   ├── FacultyAnnouncements.jsx
+│   ├── StudyMaterials.jsx
+│   ├── FacultyMaterials.jsx
+│   ├── Timetable.jsx
+│   └── ProtectedRoute.jsx
+│
+├── .gitignore
+├── package.json
+├── vite.config.js
+└── README.mds
