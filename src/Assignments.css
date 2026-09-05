@@ -1,0 +1,156 @@
+.assignments-page {
+  min-height: 100vh;
+  background: #f1f5f9;
+}
+
+.assignments-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 50px;
+  background: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.assignments-nav .logo {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.assignments-nav a {
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: 600;
+}
+
+.assignments-container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 50px 25px;
+}
+
+.assignments-heading {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.assignments-heading h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.assignments-heading p {
+  color: #64748b;
+}
+
+.assignments-loading,
+.no-assignments {
+  background: white;
+  padding: 50px;
+  text-align: center;
+  border-radius: 18px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+}
+
+.empty-icon {
+  font-size: 45px;
+  margin-bottom: 15px;
+}
+
+.no-assignments p {
+  color: #64748b;
+}
+
+.assignment-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+}
+
+.assignment-card {
+  background: white;
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+}
+
+.assignment-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.subject-badge {
+  background: #dbeafe;
+  color: #1d4ed8;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.pending-badge {
+  background: #fef3c7;
+  color: #92400e;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.assignment-card h2 {
+  margin-bottom: 12px;
+  font-size: 21px;
+}
+
+.assignment-description {
+  color: #64748b;
+  line-height: 1.6;
+  min-height: 55px;
+}
+
+.assignment-date {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0;
+  padding: 12px;
+  background: #f8fafc;
+  border-radius: 9px;
+}
+
+.assignment-date span {
+  color: #64748b;
+}
+
+.assignment-date strong {
+  color: #dc2626;
+}
+
+.assignment-view-btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: #2563eb;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.assignment-view-btn:hover {
+  background: #1d4ed8;
+}
+
+@media (max-width: 700px) {
+  .assignments-nav {
+    padding: 18px 20px;
+  }
+
+  .assignment-grid {
+    grid-template-columns: 1fr;
+  }
+}

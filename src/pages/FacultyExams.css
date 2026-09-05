@@ -1,0 +1,187 @@
+.faculty-exams-page {
+  min-height: 100vh;
+  background: #f4f7fb;
+}
+
+.faculty-exams-nav {
+  height: 70px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.faculty-exams-nav .logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #1e3a8a;
+}
+
+.faculty-exams-nav a {
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: 600;
+}
+
+.faculty-exams-container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 50px 20px;
+}
+
+.faculty-exams-heading {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.faculty-exams-heading h1 {
+  font-size: 32px;
+  color: #172554;
+  margin-bottom: 10px;
+}
+
+.faculty-exams-heading p {
+  color: #64748b;
+  font-size: 16px;
+}
+
+.exam-form-card {
+  background: white;
+  max-width: 650px;
+  margin: auto;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.exam-form-card h2 {
+  text-align: center;
+  color: #172554;
+  margin-bottom: 25px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+.add-exam-btn {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  background: #2563eb;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.add-exam-btn:hover {
+  background: #1d4ed8;
+}
+
+.exam-status {
+  text-align: center;
+  margin-top: 20px;
+  font-weight: 600;
+}
+
+.existing-exams {
+  margin-top: 40px;
+}
+
+.existing-exams h2 {
+  color: #172554;
+  margin-bottom: 20px;
+}
+
+.exam-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.exam-item {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.07);
+}
+
+.exam-item h3 {
+  margin: 0 0 8px;
+  color: #1e293b;
+}
+
+.exam-item p {
+  margin: 5px 0;
+  color: #64748b;
+}
+
+.delete-exam-btn {
+  border: none;
+  background: #ef4444;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.delete-exam-btn:hover {
+  background: #dc2626;
+}
+
+.no-exams {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  text-align: center;
+  color: #64748b;
+}
+
+@media (max-width: 600px) {
+  .faculty-exams-nav {
+    padding: 0 15px;
+  }
+
+  .faculty-exams-nav .logo {
+    font-size: 19px;
+  }
+
+  .faculty-exams-heading h1 {
+    font-size: 26px;
+  }
+
+  .exam-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .delete-exam-btn {
+    width: 100%;
+  }
+}

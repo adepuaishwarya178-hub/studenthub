@@ -1,0 +1,180 @@
+.materials-page {
+  min-height: 100vh;
+  background: #f8fafc;
+}
+
+.materials-nav {
+  height: 70px;
+  padding: 0 8%;
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.materials-nav a {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.materials-container {
+  padding: 45px 8%;
+}
+
+.materials-heading {
+  margin-bottom: 35px;
+}
+
+.materials-heading h1 {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.materials-heading p {
+  color: #64748b;
+}
+
+.subject-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+}
+
+.subject-card {
+  background: white;
+  padding: 28px;
+  border-radius: 16px;
+  border: 1px solid #e5e7eb;
+  transition: 0.3s;
+}
+
+.subject-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.subject-icon {
+  font-size: 40px;
+  margin-bottom: 15px;
+}
+
+.subject-card h3 {
+  margin-bottom: 10px;
+}
+
+.subject-card p {
+  color: #64748b;
+  line-height: 1.5;
+  min-height: 65px;
+}
+
+.subject-card button {
+  margin-top: 15px;
+  border: none;
+  background: #2563eb;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.subject-card button:hover {
+  background: #1d4ed8;
+}
+
+@media (max-width: 1000px) {
+  .subject-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .subject-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .materials-container {
+    padding: 30px 5%;
+  }
+}
+.student-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logout-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  background: #ef4444;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  background: #dc2626;
+}
+.materials-loading {
+  text-align: center;
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  color: #64748b;
+}
+
+.uploaded-materials {
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.uploaded-materials h4 {
+  margin-bottom: 12px;
+}
+
+.uploaded-material {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  padding: 12px;
+  margin-bottom: 10px;
+  background: #f8fafc;
+  border-radius: 10px;
+}
+
+.uploaded-material strong {
+  font-size: 14px;
+}
+
+.uploaded-material p {
+  margin: 5px 0 0;
+  font-size: 13px;
+  color: #64748b;
+}
+
+.view-pdf {
+  text-decoration: none;
+  color: white;
+  background: #2563eb;
+  padding: 8px 12px;
+  border-radius: 7px;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.view-pdf:hover {
+  background: #1d4ed8;
+}
+
+.no-material {
+  margin-top: 15px;
+  color: #94a3b8;
+  font-size: 14px;
+}
