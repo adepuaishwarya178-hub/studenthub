@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
 import WTMaterials from "./WTMaterials";
 import AIMaterials from "./AIMaterials";
@@ -23,7 +23,6 @@ import ProtectedRoute from "./ProtectedRoute";
 
 import "./App.css";
 
-
 // ================= HOME =================
 
 function Home() {
@@ -46,16 +45,15 @@ function Home() {
             About
           </a>
 
-          <a href="/login">
+          <Link to="/login">
             <button className="login-btn">
               Login
             </button>
-          </a>
+          </Link>
 
         </div>
 
       </nav>
-
 
       <section className="hero">
 
@@ -76,14 +74,13 @@ function Home() {
             platform.
           </p>
 
-          <a href="/login">
+          <Link to="/login">
             <button className="get-started">
               Get Started →
             </button>
-          </a>
+          </Link>
 
         </div>
-
 
         <div className="hero-card">
 
@@ -103,7 +100,6 @@ function Home() {
 
       </section>
 
-
       <section
         className="features"
         id="features"
@@ -116,7 +112,6 @@ function Home() {
         <p className="section-text">
           Stay organized and make your student life easier.
         </p>
-
 
         <div className="feature-grid">
 
@@ -136,7 +131,6 @@ function Home() {
 
           </div>
 
-
           <div className="feature-card">
 
             <div className="icon">
@@ -153,7 +147,6 @@ function Home() {
 
           </div>
 
-
           <div className="feature-card">
 
             <div className="icon">
@@ -169,7 +162,6 @@ function Home() {
             </p>
 
           </div>
-
 
           <div className="feature-card">
 
@@ -195,7 +187,6 @@ function Home() {
   );
 }
 
-
 // ================= APP =================
 
 function App() {
@@ -213,7 +204,6 @@ function App() {
           element={<Home />}
         />
 
-
         {/* LOGIN */}
 
         <Route
@@ -221,14 +211,12 @@ function App() {
           element={<Login />}
         />
 
-
         {/* SIGNUP */}
 
         <Route
           path="/signup"
           element={<Signup />}
         />
-
 
         {/* ================= STUDENT ROUTES ================= */}
 
@@ -313,7 +301,6 @@ function App() {
           }
         />
 
-
         {/* ================= FACULTY ROUTES ================= */}
 
         <Route
@@ -360,8 +347,6 @@ function App() {
             </ProtectedRoute>
           }
         />
-
-        
 
       </Routes>
 
