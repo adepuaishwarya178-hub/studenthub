@@ -67,7 +67,7 @@ function StudyMaterials() {
   // ================= FETCH MATERIALS =================
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/materials")
+    fetch("http://https://studenthub-backend-ubpy.onrender.com/api/materials")
       .then((response) => response.json())
       .then((data) => {
         setMaterials(data);
@@ -94,7 +94,7 @@ function StudyMaterials() {
 
     const cleanPath = filePath.replace(/\\/g, "/");
 
-    return `http://localhost:5000/${cleanPath}`;
+    return `http://https://studenthub-backend-ubpy.onrender.com/${cleanPath}`;
   };
 
   return (

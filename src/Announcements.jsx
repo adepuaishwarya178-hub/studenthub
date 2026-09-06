@@ -7,7 +7,7 @@ function Announcements() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/announcements")
+    fetch("http://https://studenthub-backend-ubpy.onrender.com/api/announcements")
       .then((response) => response.json())
       .then((data) => {
         setAnnouncements(data);

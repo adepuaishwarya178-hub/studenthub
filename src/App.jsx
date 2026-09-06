@@ -7,7 +7,7 @@ import Announcements from "./Announcements";
 import Timetable from "./Timetable";
 import StudyMaterials from "./StudyMaterials";
 import Assignments from "./Assignments";
-import Profile from "./profile";
+import Profile from "./Profile";
 
 import StudentDashboard from "./StudentDashboard";
 import Login from "./Login";
@@ -18,7 +18,6 @@ import FacultyMaterials from "./FacultyMaterials";
 import FacultyAnnouncements from "./FacultyAnnouncements";
 import FacultyAssignments from "./FacultyAssignments";
 import FacultyProfile from "./FacultyProfile";
-import FacultyExams from "./pages/FacultyExams";
 
 import ProtectedRoute from "./ProtectedRoute";
 
@@ -362,10 +361,7 @@ function App() {
           }
         />
 
-        <Route
-  path="/faculty/exams"
-  element={<FacultyExams />}
-/>
+        
 
       </Routes>
 

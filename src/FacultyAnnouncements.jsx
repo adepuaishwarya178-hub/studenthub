@@ -22,7 +22,7 @@ function FacultyAnnouncements() {
     try {
 
       const response = await fetch(
-        "http://localhost:5000/api/announcements"
+        "http://https://studenthub-backend-ubpy.onrender.com/api/announcements"
       );
 
       const data = await response.json();
@@ -74,7 +74,7 @@ function FacultyAnnouncements() {
     try {
 
       const response = await fetch(
-        "http://localhost:5000/api/announcements",
+        "http://https://studenthub-backend-ubpy.onrender.com/api/announcements",
         {
           method: "POST",
           headers: {
@@ -140,7 +140,7 @@ function FacultyAnnouncements() {
     try {
 
       const response = await fetch(
-        `http://localhost:5000/api/announcements/${id}`,
+        `http://https://studenthub-backend-ubpy.onrender.com/api/announcements/${id}`,
         {
           method: "DELETE",
         }

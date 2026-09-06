@@ -7,7 +7,7 @@ function Assignments() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/assignments")
+    fetch("http://https://studenthub-backend-ubpy.onrender.com/api/assignments")
       .then((response) => response.json())
       .then((data) => {
         setAssignments(data);

@@ -33,7 +33,7 @@ function FacultyMaterials() {
     try {
 
       const response = await fetch(
-        "http://localhost:5000/api/materials"
+        "http://https://studenthub-backend-ubpy.onrender.com/api/materials"
       );
 
       const data = await response.json();
@@ -138,7 +138,7 @@ function FacultyMaterials() {
     try {
 
       const response = await fetch(
-        "http://localhost:5000/api/materials",
+        "http://https://studenthub-backend-ubpy.onrender.com/api/materials",
         {
           method: "POST",
           body: data,
@@ -210,7 +210,7 @@ function FacultyMaterials() {
     try {
 
       const response = await fetch(
-        `http://localhost:5000/api/materials/${id}`,
+        `http://https://studenthub-backend-ubpy.onrender.com/api/materials/${id}`,
         {
           method: "DELETE",
         }
@@ -495,7 +495,7 @@ function FacultyMaterials() {
                     {/* VIEW */}
 
                     <a
-                      href={`http://localhost:5000/${material.filePath.replace(
+                      href={`http://https://studenthub-backend-ubpy.onrender.com/${material.filePath.replace(
                         /\\/g,
                         "/"
                       )}`}
