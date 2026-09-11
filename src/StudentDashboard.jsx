@@ -29,7 +29,7 @@ function StudentDashboard() {
 
     // ================= FETCH STUDENT =================
 
-    fetch("http://https://studenthub-backend-ubpy.onrender.com/api/students")
+    fetch("http://localhost:5000/api/students")
       .then((response) => response.json())
       .then((students) => {
         if (students.length > 0) {
@@ -44,20 +44,17 @@ function StudentDashboard() {
 
     // ================= FETCH ASSIGNMENTS =================
 
-    fetch("http://https://studenthub-backend-ubpy.onrender.com/api/assignments")
+    fetch("http://localhost:5000/api/assignments")
       .then((response) => response.json())
       .then((assignments) => {
-        // Count pending assignments
         const pending = assignments.filter(
           (assignment) => assignment.status !== "Completed"
         ).length;
 
-        // Count completed assignments
         const completed = assignments.filter(
           (assignment) => assignment.status === "Completed"
         ).length;
 
-        // Calculate study progress
         const total = assignments.length;
 
         const progress =
@@ -66,7 +63,6 @@ function StudentDashboard() {
             : Math.round((completed / total) * 100);
 
         setStudyProgress(progress);
-
         setPendingTasks(pending);
         setCompletedTasks(completed);
       })

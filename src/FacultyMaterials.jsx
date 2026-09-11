@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import "./FacultyMaterials.css";
 
 function FacultyMaterials() {
-
   const [formData, setFormData] = useState({
     subject: "Computer Networks",
     unit: "Unit 1",
@@ -15,6 +14,8 @@ function FacultyMaterials() {
   const [materials, setMaterials] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const API_URL = "http://localhost:5000";
+
   const subjects = [
     "Computer Networks",
     "Artificial Intelligence",
@@ -25,120 +26,78 @@ function FacultyMaterials() {
 
   const units = ["Unit 1", "Unit 2", "Unit 3"];
 
-
   // ================= FETCH MATERIALS =================
 
   const fetchMaterials = async () => {
-
     try {
-
       const response = await fetch(
-        "http://https://studenthub-backend-ubpy.onrender.com/api/materials"
+        `${API_URL}/api/materials`
       );
 
       const data = await response.json();
 
       if (response.ok) {
         setMaterials(data);
+      } else {
+        console.log("Failed to fetch materials:", data);
       }
-
     } catch (error) {
-
-      console.log(
-        "Error fetching materials:",
-        error
-      );
-
+      console.log("Error fetching materials:", error);
     } finally {
-
       setLoading(false);
-
     }
   };
-
 
   useEffect(() => {
     fetchMaterials();
   }, []);
 
-
   // ================= FORM CHANGE =================
 
   const handleChange = (e) => {
-
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
-
   };
-
 
   // ================= FILE CHANGE =================
 
   const handleFileChange = (e) => {
-
     const file = e.target.files[0];
 
     if (file && file.type !== "application/pdf") {
-
-      setMessage(
-        "Please select only a PDF file ❌"
-      );
-
+      setMessage("Please select only a PDF file ❌");
       setPdf(null);
-
       return;
     }
 
     setPdf(file);
     setMessage("");
-
   };
-
 
   // ================= UPLOAD =================
 
   const handleSubmit = async (e) => {
-
     e.preventDefault();
 
     if (!pdf) {
-
-      setMessage(
-        "Please select a PDF file ❌"
-      );
-
+      setMessage("Please select a PDF file ❌");
       return;
     }
 
+    setMessage("Uploading material... ⏳");
+
     const data = new FormData();
 
-    data.append(
-      "subject",
-      formData.subject
-    );
-
-    data.append(
-      "unit",
-      formData.unit
-    );
-
-    data.append(
-      "title",
-      formData.title
-    );
-
-    data.append(
-      "pdf",
-      pdf
-    );
-
+    data.append("subject", formData.subject);
+    data.append("unit", formData.unit);
+    data.append("title", formData.title);
+    data.append("pdf", pdf);
 
     try {
-
       const response = await fetch(
-        "http://https://studenthub-backend-ubpy.onrender.com/api/materials",
+        `${API_URL}/api/materials`,
         {
           method: "POST",
           body: data,
@@ -147,9 +106,7 @@ function FacultyMaterials() {
 
       const result = await response.json();
 
-
       if (response.ok) {
-
         setMessage(
           "Material uploaded successfully! ✅"
         );
@@ -169,35 +126,24 @@ function FacultyMaterials() {
           fileInput.value = "";
         }
 
-        // Refresh materials list
         fetchMaterials();
-
       } else {
-
         setMessage(
-          result.message ||
-          "Upload failed ❌"
+          result.message || "Upload failed ❌"
         );
-
       }
-
     } catch (error) {
-
-      console.log(error);
+      console.log("Upload error:", error);
 
       setMessage(
         "Backend connection failed ❌"
       );
-
     }
-
   };
-
 
   // ================= DELETE MATERIAL =================
 
   const handleDelete = async (id) => {
-
     const confirmDelete = window.confirm(
       "Are you sure you want to delete this material?"
     );
@@ -206,11 +152,9 @@ function FacultyMaterials() {
       return;
     }
 
-
     try {
-
       const response = await fetch(
-        `http://https://studenthub-backend-ubpy.onrender.com/api/materials/${id}`,
+        `${API_URL}/api/materials/${id}`,
         {
           method: "DELETE",
         }
@@ -218,46 +162,47 @@ function FacultyMaterials() {
 
       const result = await response.json();
 
-
       if (response.ok) {
-
         setMessage(
           "Material deleted successfully! ✅"
         );
 
-        // Remove deleted material from screen
         setMaterials(
           materials.filter(
-            (material) =>
-              material._id !== id
+            (material) => material._id !== id
           )
         );
-
       } else {
-
         setMessage(
           result.message ||
-          "Failed to delete material ❌"
+            "Failed to delete material ❌"
         );
-
       }
-
     } catch (error) {
-
-      console.log(error);
+      console.log("Delete error:", error);
 
       setMessage(
         "Backend connection failed ❌"
       );
-
     }
-
   };
 
+  // ================= FORMAT FILE PATH =================
+
+  const getFileUrl = (filePath) => {
+    if (!filePath) {
+      return "#";
+    }
+
+    const cleanPath = filePath.replace(/\\/g, "/");
+
+    return `${API_URL}/${cleanPath}`;
+  };
+
+  // ================= UI =================
 
   return (
     <div className="faculty-materials-page">
-
 
       {/* ================= NAVBAR ================= */}
 
@@ -273,11 +218,9 @@ function FacultyMaterials() {
 
       </nav>
 
-
       {/* ================= MAIN ================= */}
 
       <main className="faculty-materials-container">
-
 
         {/* ================= HEADING ================= */}
 
@@ -294,7 +237,6 @@ function FacultyMaterials() {
 
         </div>
 
-
         {/* ================= UPLOAD CARD ================= */}
 
         <div className="upload-material-card">
@@ -303,9 +245,7 @@ function FacultyMaterials() {
             📤 Upload Study Material
           </h2>
 
-
           <form onSubmit={handleSubmit}>
-
 
             {/* SUBJECT */}
 
@@ -322,20 +262,17 @@ function FacultyMaterials() {
               >
 
                 {subjects.map((subject) => (
-
                   <option
                     key={subject}
                     value={subject}
                   >
                     {subject}
                   </option>
-
                 ))}
 
               </select>
 
             </div>
-
 
             {/* UNIT */}
 
@@ -352,20 +289,17 @@ function FacultyMaterials() {
               >
 
                 {units.map((unit) => (
-
                   <option
                     key={unit}
                     value={unit}
                   >
                     {unit}
                   </option>
-
                 ))}
 
               </select>
 
             </div>
-
 
             {/* TITLE */}
 
@@ -386,7 +320,6 @@ function FacultyMaterials() {
 
             </div>
 
-
             {/* PDF */}
 
             <div className="form-group">
@@ -405,15 +338,15 @@ function FacultyMaterials() {
 
             </div>
 
+            {/* SELECTED FILE */}
 
             {pdf && (
-
               <p className="selected-file">
                 📄 Selected: {pdf.name}
               </p>
-
             )}
 
+            {/* UPLOAD BUTTON */}
 
             <button
               type="submit"
@@ -422,20 +355,15 @@ function FacultyMaterials() {
               Upload PDF →
             </button>
 
-
           </form>
 
-
           {message && (
-
             <p className="upload-message">
               {message}
             </p>
-
           )}
 
         </div>
-
 
         {/* ================= MATERIAL LIST ================= */}
 
@@ -444,7 +372,6 @@ function FacultyMaterials() {
           <h2>
             📚 Uploaded Materials
           </h2>
-
 
           {loading ? (
 
@@ -489,23 +416,20 @@ function FacultyMaterials() {
 
                   </div>
 
-
                   <div className="material-actions">
 
                     {/* VIEW */}
 
                     <a
-                      href={`http://https://studenthub-backend-ubpy.onrender.com/${material.filePath.replace(
-                        /\\/g,
-                        "/"
-                      )}`}
+                      href={getFileUrl(
+                        material.filePath
+                      )}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="view-material-btn"
                     >
                       👁️ View PDF
                     </a>
-
 
                     {/* DELETE */}
 
@@ -531,7 +455,6 @@ function FacultyMaterials() {
           )}
 
         </div>
-
 
       </main>
 

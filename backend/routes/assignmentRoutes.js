@@ -1,9 +1,11 @@
+
 const express = require("express");
 const Assignment = require("../models/Assignment");
 
 const router = express.Router();
 
-// CREATE ASSIGNMENT
+// ================= CREATE ASSIGNMENT =================
+
 router.post("/", async (req, res) => {
   try {
     const {
@@ -22,7 +24,7 @@ router.post("/", async (req, res) => {
     const assignment = new Assignment({
       title,
       subject,
-      description,
+      description: description || "",
       dueDate,
       status: "Pending",
     });
@@ -33,8 +35,9 @@ router.post("/", async (req, res) => {
       message: "Assignment created successfully!",
       assignment: savedAssignment,
     });
+
   } catch (error) {
-    console.log("CREATE ASSIGNMENT ERROR:", error);
+    console.error("CREATE ASSIGNMENT ERROR:", error);
 
     res.status(500).json({
       message: "Failed to create assignment",
@@ -42,54 +45,33 @@ router.post("/", async (req, res) => {
   }
 });
 
-// GET ALL ASSIGNMENTS
+
+// ================= GET ALL ASSIGNMENTS =================
+
 router.get("/", async (req, res) => {
   try {
-    const assignments = await Assignment.find().sort({
-      createdAt: -1,
-    });
+    const assignments = await Assignment.find()
+      .sort({ createdAt: -1 });
 
-    res.json(assignments);
+    res.status(200).json(assignments);
+
   } catch (error) {
-    console.log("GET ASSIGNMENTS ERROR:", error);
+    console.error("GET ASSIGNMENTS ERROR:", error);
 
     res.status(500).json({
       message: "Failed to fetch assignments",
+      error: error.message,
     });
   }
 });
 
-// DELETE ASSIGNMENT
+
+// ================= DELETE ASSIGNMENT =================
+
 router.delete("/:id", async (req, res) => {
   try {
-    const deletedAssignment =
+    const assignment =
       await Assignment.findByIdAndDelete(req.params.id);
-
-    if (!deletedAssignment) {
-      return res.status(404).json({
-        message: "Assignment not found",
-      });
-    }
-
-    res.json({
-      message: "Assignment deleted successfully!",
-    });
-  } catch (error) {
-    console.log("DELETE ASSIGNMENT ERROR:", error);
-
-    res.status(500).json({
-      message: "Failed to delete assignment",
-    });
-  }
-});
-
-module.exports = router;
-// Delete assignment
-router.delete("/:id", async (req, res) => {
-  try {
-    const assignment = await Assignment.findByIdAndDelete(
-      req.params.id
-    );
 
     if (!assignment) {
       return res.status(404).json({
@@ -97,15 +79,19 @@ router.delete("/:id", async (req, res) => {
       });
     }
 
-    res.json({
-      message: "Assignment deleted successfully",
+    res.status(200).json({
+      message: "Assignment deleted successfully!",
     });
 
   } catch (error) {
-    console.log(error);
+    console.error("DELETE ASSIGNMENT ERROR:", error);
 
     res.status(500).json({
       message: "Failed to delete assignment",
+      error: error.message,
     });
   }
 });
+
+
+module.exports = router;

@@ -19,7 +19,7 @@ function Login() {
 
     try {
       const response = await fetch(
-        "http://https://studenthub-backend-ubpy.onrender.com/api/auth/login",
+        "http://localhost:5000/api/auth/login",
         {
           method: "POST",
           headers: {
@@ -37,7 +37,6 @@ function Login() {
 
       if (!response.ok) {
         setMessage(data.message || "Login failed ❌");
-        setLoading(false);
         return;
       }
 
@@ -53,7 +52,7 @@ function Login() {
         data.user.role
       );
 
-      // Redirect based on actual role from backend
+      // Redirect based on actual role
       if (data.user.role === "student") {
         navigate("/dashboard");
       } else if (data.user.role === "faculty") {

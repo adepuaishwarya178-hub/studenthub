@@ -24,7 +24,7 @@ function FacultyExams() {
   const fetchExams = async () => {
     try {
       const response = await fetch(
-        "http://https://studenthub-backend-ubpy.onrender.com/api/exams"
+        "http://localhost:5000/api/exams"
       );
 
       const data = await response.json();
@@ -57,7 +57,7 @@ function FacultyExams() {
 
     try {
       const response = await fetch(
-        "http://https://studenthub-backend-ubpy.onrender.com/api/exams",
+        "http://localhost:5000/api/exams",
         {
           method: "POST",
           headers: {
@@ -102,7 +102,7 @@ function FacultyExams() {
 
     try {
       const response = await fetch(
-        `http://https://studenthub-backend-ubpy.onrender.com/api/exams/${id}`,
+        `http://localhost:5000/api/exams/${id}`,
         {
           method: "DELETE",
         }

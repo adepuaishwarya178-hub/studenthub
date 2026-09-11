@@ -67,7 +67,7 @@ function StudyMaterials() {
   // ================= FETCH MATERIALS =================
 
   useEffect(() => {
-    fetch("http://https://studenthub-backend-ubpy.onrender.com/api/materials")
+    fetch("http://localhost:5000/api/materials")
       .then((response) => response.json())
       .then((data) => {
         setMaterials(data);
@@ -94,13 +94,15 @@ function StudyMaterials() {
 
     const cleanPath = filePath.replace(/\\/g, "/");
 
-    return `http://https://studenthub-backend-ubpy.onrender.com/${cleanPath}`;
+    return `http://localhost:5000/${cleanPath}`;
   };
+
+  // ================= UI =================
 
   return (
     <div className="materials-page">
 
-      {/* NAVBAR */}
+      {/* ================= NAVBAR ================= */}
 
       <nav className="materials-nav">
 
@@ -114,12 +116,11 @@ function StudyMaterials() {
 
       </nav>
 
-
-      {/* MAIN */}
+      {/* ================= MAIN ================= */}
 
       <main className="materials-container">
 
-        {/* HEADING */}
+        {/* ================= HEADING ================= */}
 
         <div className="materials-heading">
 
@@ -133,8 +134,7 @@ function StudyMaterials() {
 
         </div>
 
-
-        {/* LOADING */}
+        {/* ================= LOADING ================= */}
 
         {loading ? (
 
@@ -164,20 +164,17 @@ function StudyMaterials() {
                     {subject.icon}
                   </div>
 
-
                   {/* SUBJECT NAME */}
 
                   <h3>
                     {subject.name}
                   </h3>
 
-
                   {/* DESCRIPTION */}
 
                   <p>
                     {subject.description}
                   </p>
-
 
                   {/* UNITS */}
 
@@ -195,7 +192,6 @@ function StudyMaterials() {
 
                   </div>
 
-
                   {/* UPLOADED MATERIALS */}
 
                   {subjectMaterials.length > 0 ? (
@@ -205,7 +201,6 @@ function StudyMaterials() {
                       <h4>
                         📚 Uploaded Materials
                       </h4>
-
 
                       {subjectMaterials.map(
                         (material) => (
@@ -231,7 +226,6 @@ function StudyMaterials() {
 
                             </div>
 
-
                             {/* VIEW PDF */}
 
                             <a
@@ -239,7 +233,7 @@ function StudyMaterials() {
                                 material.filePath
                               )}
                               target="_blank"
-                              rel="noreferrer"
+                              rel="noopener noreferrer"
                               className="view-pdf"
                             >
                               View PDF →

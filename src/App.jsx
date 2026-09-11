@@ -7,7 +7,7 @@ import Announcements from "./Announcements";
 import Timetable from "./Timetable";
 import StudyMaterials from "./StudyMaterials";
 import Assignments from "./Assignments";
-import Profile from "./Profile";
+import Profile from "./profile";
 
 import StudentDashboard from "./StudentDashboard";
 import Login from "./Login";

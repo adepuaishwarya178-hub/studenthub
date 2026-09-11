@@ -20,7 +20,7 @@ function Signup() {
 
     try {
       const response = await fetch(
-        "http://https://studenthub-backend-ubpy.onrender.com/api/auth/signup",
+        "http://localhost:5000/api/auth/signup",
         {
           method: "POST",
           headers: {
@@ -41,7 +41,6 @@ function Signup() {
         setMessage(
           data.message || "Signup failed ❌"
         );
-        setLoading(false);
         return;
       }
 
@@ -136,6 +135,7 @@ function Signup() {
                   setRole(e.target.value)
                 }
               />
+
               Student
             </label>
 
@@ -149,6 +149,7 @@ function Signup() {
                   setRole(e.target.value)
                 }
               />
+
               Faculty
             </label>
 

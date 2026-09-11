@@ -70,3 +70,25 @@ StudentHub/
 ├── package.json
 ├── README.md
 └── vite.config.js
+## 📸 Screenshots
+
+### 🏠 Home Page
+![Home Page](screenshots/home.png)
+
+### 👨‍🎓 Student Dashboard
+![Student Dashboard](screenshots/student-dashboard.png)
+
+### 👨‍🏫 Faculty Dashboard
+![Faculty Dashboard](screenshots/faculty-dashboard.png)
+
+### 📝 Faculty Assignments
+![Faculty Assignments](screenshots/faculty-assignments.png)
+
+### 📝 Student Assignments
+![Student Assignments](screenshots/student-assignments.png)
+
+### 📚 Study Materials
+![Study Materials](screenshots/student-materials.png)
+
+### 📢 Announcements
+![Announcements](screenshots/student-announcements.png)

@@ -3,79 +3,68 @@ import { Link } from "react-router-dom";
 import "./FacultyAssignments.css";
 
 function FacultyAssignments() {
-
   const [formData, setFormData] = useState({
-    subject: "Computer Networks",
     title: "",
     description: "",
+    subject: "",
     dueDate: "",
   });
 
-  const [status, setStatus] = useState("");
   const [assignments, setAssignments] = useState([]);
+  const [status, setStatus] = useState("");
   const [loading, setLoading] = useState(true);
-
 
   // ================= FETCH ASSIGNMENTS =================
 
   const fetchAssignments = async () => {
-
     try {
-
       const response = await fetch(
-        "http://https://studenthub-backend-ubpy.onrender.com/api/assignments"
+        "http://localhost:5000/api/assignments"
       );
 
       const data = await response.json();
 
       if (response.ok) {
         setAssignments(data);
+      } else {
+        console.log(
+          "Failed to fetch assignments:",
+          data
+        );
       }
-
     } catch (error) {
-
       console.log(
         "Error fetching assignments:",
         error
       );
-
     } finally {
-
       setLoading(false);
-
     }
   };
-
 
   useEffect(() => {
     fetchAssignments();
   }, []);
 
-
   // ================= FORM CHANGE =================
 
   const handleChange = (e) => {
-
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
-
   };
-
 
   // ================= ADD ASSIGNMENT =================
 
   const handleSubmit = async (e) => {
-
     e.preventDefault();
 
     setStatus("Adding assignment...");
 
     try {
-
       const response = await fetch(
-        "http://https://studenthub-backend-ubpy.onrender.com/api/assignments",
+        "http://localhost:5000/api/assignments",
         {
           method: "POST",
           headers: {
@@ -87,49 +76,40 @@ function FacultyAssignments() {
 
       const data = await response.json();
 
-
       if (response.ok) {
-
         setStatus(
           "Assignment added successfully! ✅"
         );
 
         setFormData({
-          subject: "Computer Networks",
           title: "",
           description: "",
+          subject: "",
           dueDate: "",
         });
 
-        // Refresh assignment list
         fetchAssignments();
-
       } else {
-
         setStatus(
           data.message ||
-          "Failed to add assignment ❌"
+            "Failed to add assignment ❌"
         );
-
       }
-
     } catch (error) {
-
-      console.log(error);
+      console.log(
+        "Error adding assignment:",
+        error
+      );
 
       setStatus(
         "Backend connection failed ❌"
       );
-
     }
-
   };
-
 
   // ================= DELETE ASSIGNMENT =================
 
   const handleDelete = async (id) => {
-
     const confirmDelete = window.confirm(
       "Are you sure you want to delete this assignment?"
     );
@@ -138,11 +118,9 @@ function FacultyAssignments() {
       return;
     }
 
-
     try {
-
       const response = await fetch(
-        `http://https://studenthub-backend-ubpy.onrender.com/api/assignments/${id}`,
+        `http://localhost:5000/api/assignments/${id}`,
         {
           method: "DELETE",
         }
@@ -150,46 +128,39 @@ function FacultyAssignments() {
 
       const data = await response.json();
 
-
       if (response.ok) {
-
         setStatus(
           "Assignment deleted successfully! ✅"
         );
 
         setAssignments(
-          assignments.filter(
-            (assignment) =>
-              assignment._id !== id
-          )
+          (previousAssignments) =>
+            previousAssignments.filter(
+              (assignment) =>
+                assignment._id !== id
+            )
         );
-
       } else {
-
         setStatus(
           data.message ||
-          "Failed to delete assignment ❌"
+            "Failed to delete assignment ❌"
         );
-
       }
-
     } catch (error) {
-
-      console.log(error);
+      console.log(
+        "Error deleting assignment:",
+        error
+      );
 
       setStatus(
         "Backend connection failed ❌"
       );
-
     }
-
   };
-
 
   // ================= FORMAT DATE =================
 
   const formatDate = (date) => {
-
     if (!date) {
       return "No date";
     }
@@ -202,13 +173,12 @@ function FacultyAssignments() {
         year: "numeric",
       }
     );
-
   };
 
+  // ================= UI =================
 
   return (
     <div className="faculty-assignments-page">
-
 
       {/* ================= NAVBAR ================= */}
 
@@ -224,9 +194,9 @@ function FacultyAssignments() {
 
       </nav>
 
+      {/* ================= MAIN ================= */}
 
       <main className="faculty-assignments-container">
-
 
         {/* ================= HEADING ================= */}
 
@@ -237,12 +207,10 @@ function FacultyAssignments() {
           </h1>
 
           <p>
-            Create and manage assignments
-            for students.
+            Create assignments for students.
           </p>
 
         </div>
-
 
         {/* ================= ADD FORM ================= */}
 
@@ -252,48 +220,7 @@ function FacultyAssignments() {
             ➕ Add New Assignment
           </h2>
 
-
           <form onSubmit={handleSubmit}>
-
-
-            {/* SUBJECT */}
-
-            <div className="form-group">
-
-              <label>
-                Subject
-              </label>
-
-              <select
-                name="subject"
-                value={formData.subject}
-                onChange={handleChange}
-              >
-
-                <option>
-                  Computer Networks
-                </option>
-
-                <option>
-                  Artificial Intelligence
-                </option>
-
-                <option>
-                  Web Technologies
-                </option>
-
-                <option>
-                  Cyber Security
-                </option>
-
-                <option>
-                  Computer Science
-                </option>
-
-              </select>
-
-            </div>
-
 
             {/* TITLE */}
 
@@ -306,7 +233,7 @@ function FacultyAssignments() {
               <input
                 type="text"
                 name="title"
-                placeholder="Example: CN Unit 1 Assignment"
+                placeholder="Example: DBMS Assignment"
                 value={formData.title}
                 onChange={handleChange}
                 required
@@ -314,6 +241,24 @@ function FacultyAssignments() {
 
             </div>
 
+            {/* SUBJECT */}
+
+            <div className="form-group">
+
+              <label>
+                Subject
+              </label>
+
+              <input
+                type="text"
+                name="subject"
+                placeholder="Example: DBMS"
+                value={formData.subject}
+                onChange={handleChange}
+                required
+              />
+
+            </div>
 
             {/* DESCRIPTION */}
 
@@ -334,7 +279,6 @@ function FacultyAssignments() {
 
             </div>
 
-
             {/* DUE DATE */}
 
             <div className="form-group">
@@ -353,6 +297,7 @@ function FacultyAssignments() {
 
             </div>
 
+            {/* SUBMIT */}
 
             <button
               type="submit"
@@ -363,17 +308,13 @@ function FacultyAssignments() {
 
           </form>
 
-
           {status && (
-
             <p className="assignment-status">
               {status}
             </p>
-
           )}
 
         </div>
-
 
         {/* ================= ASSIGNMENT LIST ================= */}
 
@@ -382,7 +323,6 @@ function FacultyAssignments() {
           <h2>
             📋 Created Assignments
           </h2>
-
 
           {loading ? (
 
@@ -400,78 +340,80 @@ function FacultyAssignments() {
 
             <div className="assignment-list">
 
-              {assignments.map((assignment) => (
+              {assignments.map(
+                (assignment) => (
 
-                <div
-                  className="faculty-assignment-item"
-                  key={assignment._id}
-                >
+                  <div
+                    className="faculty-assignment-item"
+                    key={assignment._id}
+                  >
 
-                  <div className="faculty-assignment-info">
+                    <div className="faculty-assignment-info">
 
-                    <span className="assignment-subject">
-                      {assignment.subject}
-                    </span>
+                      <span className="assignment-subject">
+                        📚{" "}
+                        {assignment.subject}
+                      </span>
 
-                    <h3>
-                      {assignment.title}
-                    </h3>
+                      <h3>
+                        {assignment.title}
+                      </h3>
 
-                    <p>
-                      {assignment.description}
-                    </p>
+                      <p>
+                        {assignment.description}
+                      </p>
 
-                    <strong>
-                      📅 Due:{" "}
-                      {formatDate(
-                        assignment.dueDate
-                      )}
-                    </strong>
+                      <span className="assignment-due-date">
+                        📅 Due Date:{" "}
+                        {formatDate(
+                          assignment.dueDate
+                        )}
+                      </span>
+
+                    </div>
+
+                    <div className="faculty-assignment-actions">
+
+                      {/* VIEW */}
+
+                      <button
+                        className="view-assignment-btn"
+                        onClick={() =>
+                          alert(
+                            `Title: ${assignment.title}\n\nSubject: ${assignment.subject}\n\nDescription: ${assignment.description}\n\nDue Date: ${formatDate(
+                              assignment.dueDate
+                            )}`
+                          )
+                        }
+                      >
+                        👁️ View
+                      </button>
+
+                      {/* DELETE */}
+
+                      <button
+                        className="delete-assignment-btn"
+                        onClick={() =>
+                          handleDelete(
+                            assignment._id
+                          )
+                        }
+                      >
+                        🗑️ Delete
+                      </button>
+
+                    </div>
 
                   </div>
 
-
-                  <div className="faculty-assignment-actions">
-
-                    {/* VIEW */}
-
-                    <button
-                      className="view-assignment-btn"
-                      onClick={() =>
-                        alert(
-                          `Subject: ${assignment.subject}\n\nTitle: ${assignment.title}\n\nDescription: ${assignment.description}\n\nDue Date: ${formatDate(assignment.dueDate)}`
-                        )
-                      }
-                    >
-                      👁️ View
-                    </button>
-
-
-                    {/* DELETE */}
-
-                    <button
-                      className="delete-assignment-btn"
-                      onClick={() =>
-                        handleDelete(
-                          assignment._id
-                        )
-                      }
-                    >
-                      🗑️ Delete
-                    </button>
-
-                  </div>
-
-                </div>
-
-              ))}
+                )
+              )}
 
             </div>
 
           )}
 
         </div>
-
 
       </main>
 

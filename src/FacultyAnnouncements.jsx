@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import "./FacultyAnnouncements.css";
 
 function FacultyAnnouncements() {
-
   const [formData, setFormData] = useState({
     title: "",
     message: "",
@@ -14,67 +13,57 @@ function FacultyAnnouncements() {
   const [announcements, setAnnouncements] = useState([]);
   const [loading, setLoading] = useState(true);
 
-
   // ================= FETCH ANNOUNCEMENTS =================
 
   const fetchAnnouncements = async () => {
-
     try {
-
       const response = await fetch(
-        "http://https://studenthub-backend-ubpy.onrender.com/api/announcements"
+        "http://localhost:5000/api/announcements"
       );
 
       const data = await response.json();
 
       if (response.ok) {
         setAnnouncements(data);
+      } else {
+        console.log(
+          "Failed to fetch announcements:",
+          data
+        );
       }
-
     } catch (error) {
-
       console.log(
         "Error fetching announcements:",
         error
       );
-
     } finally {
-
       setLoading(false);
-
     }
   };
-
 
   useEffect(() => {
     fetchAnnouncements();
   }, []);
 
-
   // ================= FORM CHANGE =================
 
   const handleChange = (e) => {
-
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
-
   };
-
 
   // ================= ADD ANNOUNCEMENT =================
 
   const handleSubmit = async (e) => {
-
     e.preventDefault();
 
     setStatus("Adding announcement...");
 
     try {
-
       const response = await fetch(
-        "http://https://studenthub-backend-ubpy.onrender.com/api/announcements",
+        "http://localhost:5000/api/announcements",
         {
           method: "POST",
           headers: {
@@ -86,9 +75,7 @@ function FacultyAnnouncements() {
 
       const data = await response.json();
 
-
       if (response.ok) {
-
         setStatus(
           "Announcement added successfully! ✅"
         );
@@ -99,35 +86,28 @@ function FacultyAnnouncements() {
           date: "",
         });
 
-        // Refresh list
         fetchAnnouncements();
-
       } else {
-
         setStatus(
           data.message ||
-          "Failed to add announcement ❌"
+            "Failed to add announcement ❌"
         );
-
       }
-
     } catch (error) {
-
-      console.log(error);
+      console.log(
+        "Error adding announcement:",
+        error
+      );
 
       setStatus(
         "Backend connection failed ❌"
       );
-
     }
-
   };
-
 
   // ================= DELETE ANNOUNCEMENT =================
 
   const handleDelete = async (id) => {
-
     const confirmDelete = window.confirm(
       "Are you sure you want to delete this announcement?"
     );
@@ -136,11 +116,9 @@ function FacultyAnnouncements() {
       return;
     }
 
-
     try {
-
       const response = await fetch(
-        `http://https://studenthub-backend-ubpy.onrender.com/api/announcements/${id}`,
+        `http://localhost:5000/api/announcements/${id}`,
         {
           method: "DELETE",
         }
@@ -148,46 +126,39 @@ function FacultyAnnouncements() {
 
       const data = await response.json();
 
-
       if (response.ok) {
-
         setStatus(
           "Announcement deleted successfully! ✅"
         );
 
         setAnnouncements(
-          announcements.filter(
-            (announcement) =>
-              announcement._id !== id
-          )
+          (previousAnnouncements) =>
+            previousAnnouncements.filter(
+              (announcement) =>
+                announcement._id !== id
+            )
         );
-
       } else {
-
         setStatus(
           data.message ||
-          "Failed to delete announcement ❌"
+            "Failed to delete announcement ❌"
         );
-
       }
-
     } catch (error) {
-
-      console.log(error);
+      console.log(
+        "Error deleting announcement:",
+        error
+      );
 
       setStatus(
         "Backend connection failed ❌"
       );
-
     }
-
   };
-
 
   // ================= FORMAT DATE =================
 
   const formatDate = (date) => {
-
     if (!date) {
       return "No date";
     }
@@ -200,13 +171,12 @@ function FacultyAnnouncements() {
         year: "numeric",
       }
     );
-
   };
 
+  // ================= UI =================
 
   return (
     <div className="faculty-announcements-page">
-
 
       {/* ================= NAVBAR ================= */}
 
@@ -222,9 +192,9 @@ function FacultyAnnouncements() {
 
       </nav>
 
+      {/* ================= MAIN ================= */}
 
       <main className="faculty-announcements-container">
-
 
         {/* ================= HEADING ================= */}
 
@@ -241,7 +211,6 @@ function FacultyAnnouncements() {
 
         </div>
 
-
         {/* ================= ADD FORM ================= */}
 
         <div className="announcement-form-card">
@@ -250,9 +219,7 @@ function FacultyAnnouncements() {
             ➕ Add New Announcement
           </h2>
 
-
           <form onSubmit={handleSubmit}>
-
 
             {/* TITLE */}
 
@@ -273,7 +240,6 @@ function FacultyAnnouncements() {
 
             </div>
 
-
             {/* MESSAGE */}
 
             <div className="form-group">
@@ -293,7 +259,6 @@ function FacultyAnnouncements() {
 
             </div>
 
-
             {/* DATE */}
 
             <div className="form-group">
@@ -312,6 +277,7 @@ function FacultyAnnouncements() {
 
             </div>
 
+            {/* SUBMIT */}
 
             <button
               type="submit"
@@ -322,17 +288,13 @@ function FacultyAnnouncements() {
 
           </form>
 
-
           {status && (
-
             <p className="announcement-status">
               {status}
             </p>
-
           )}
 
         </div>
-
 
         {/* ================= ANNOUNCEMENT LIST ================= */}
 
@@ -341,7 +303,6 @@ function FacultyAnnouncements() {
           <h2>
             📋 Created Announcements
           </h2>
-
 
           {loading ? (
 
@@ -386,9 +347,7 @@ function FacultyAnnouncements() {
 
                     </div>
 
-
                     <div className="faculty-announcement-actions">
-
 
                       {/* VIEW */}
 
@@ -396,13 +355,14 @@ function FacultyAnnouncements() {
                         className="view-announcement-btn"
                         onClick={() =>
                           alert(
-                            `Title: ${announcement.title}\n\nMessage: ${announcement.message}\n\nDate: ${formatDate(announcement.date)}`
+                            `Title: ${announcement.title}\n\nMessage: ${announcement.message}\n\nDate: ${formatDate(
+                              announcement.date
+                            )}`
                           )
                         }
                       >
                         👁️ View
                       </button>
-
 
                       {/* DELETE */}
 
@@ -417,7 +377,6 @@ function FacultyAnnouncements() {
                         🗑️ Delete
                       </button>
 
-
                     </div>
 
                   </div>
@@ -430,7 +389,6 @@ function FacultyAnnouncements() {
           )}
 
         </div>
-
 
       </main>
 
