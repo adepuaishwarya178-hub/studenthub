@@ -7,7 +7,7 @@ import Announcements from "./Announcements";
 import Timetable from "./Timetable";
 import StudyMaterials from "./StudyMaterials";
 import Assignments from "./Assignments";
-import Profile from "./profile";
+import Profile from "./Profile";
 
 import StudentDashboard from "./StudentDashboard";
 import Login from "./Login";
@@ -28,6 +28,8 @@ import "./App.css";
 function Home() {
   return (
     <div className="app">
+
+      {/* ================= NAVBAR ================= */}
 
       <nav className="navbar">
 
@@ -54,6 +56,8 @@ function Home() {
         </div>
 
       </nav>
+
+      {/* ================= HERO ================= */}
 
       <section className="hero">
 
@@ -100,6 +104,8 @@ function Home() {
 
       </section>
 
+      {/* ================= FEATURES ================= */}
+
       <section
         className="features"
         id="features"
@@ -114,6 +120,8 @@ function Home() {
         </p>
 
         <div className="feature-grid">
+
+          {/* Study Materials */}
 
           <div className="feature-card">
 
@@ -131,6 +139,8 @@ function Home() {
 
           </div>
 
+          {/* Assignments */}
+
           <div className="feature-card">
 
             <div className="icon">
@@ -147,6 +157,8 @@ function Home() {
 
           </div>
 
+          {/* Timetable */}
+
           <div className="feature-card">
 
             <div className="icon">
@@ -162,6 +174,8 @@ function Home() {
             </p>
 
           </div>
+
+          {/* Announcements */}
 
           <div className="feature-card">
 
@@ -183,6 +197,25 @@ function Home() {
 
       </section>
 
+      {/* ================= ABOUT ================= */}
+
+      <section
+        id="about"
+        className="features"
+      >
+
+        <h2>
+          About StudentHub
+        </h2>
+
+        <p className="section-text">
+          StudentHub is a centralized academic management
+          platform designed to help students and faculty
+          manage their academic activities efficiently.
+        </p>
+
+      </section>
+
     </div>
   );
 }
@@ -197,28 +230,32 @@ function App() {
 
       <Routes>
 
-        {/* HOME */}
+        {/* ================= HOME ================= */}
 
         <Route
           path="/"
           element={<Home />}
         />
 
-        {/* LOGIN */}
+        {/* ================= LOGIN ================= */}
 
         <Route
           path="/login"
           element={<Login />}
         />
 
-        {/* SIGNUP */}
+        {/* ================= SIGNUP ================= */}
 
         <Route
           path="/signup"
           element={<Signup />}
         />
 
-        {/* ================= STUDENT ROUTES ================= */}
+        {/* ================================================= */}
+        {/*                  STUDENT ROUTES                   */}
+        {/* ================================================= */}
+
+        {/* Student Dashboard */}
 
         <Route
           path="/dashboard"
@@ -229,6 +266,8 @@ function App() {
           }
         />
 
+        {/* Student Profile */}
+
         <Route
           path="/profile"
           element={
@@ -237,6 +276,8 @@ function App() {
             </ProtectedRoute>
           }
         />
+
+        {/* Assignments */}
 
         <Route
           path="/assignments"
@@ -247,6 +288,8 @@ function App() {
           }
         />
 
+        {/* Study Materials */}
+
         <Route
           path="/materials"
           element={
@@ -255,6 +298,8 @@ function App() {
             </ProtectedRoute>
           }
         />
+
+        {/* CN Materials */}
 
         <Route
           path="/materials/cn"
@@ -265,6 +310,8 @@ function App() {
           }
         />
 
+        {/* AI Materials */}
+
         <Route
           path="/materials/ai"
           element={
@@ -273,6 +320,8 @@ function App() {
             </ProtectedRoute>
           }
         />
+
+        {/* WT Materials */}
 
         <Route
           path="/materials/wt"
@@ -283,6 +332,8 @@ function App() {
           }
         />
 
+        {/* Timetable */}
+
         <Route
           path="/timetable"
           element={
@@ -291,6 +342,8 @@ function App() {
             </ProtectedRoute>
           }
         />
+
+        {/* Announcements */}
 
         <Route
           path="/announcements"
@@ -301,7 +354,11 @@ function App() {
           }
         />
 
-        {/* ================= FACULTY ROUTES ================= */}
+        {/* ================================================= */}
+        {/*                  FACULTY ROUTES                   */}
+        {/* ================================================= */}
+
+        {/* Faculty Dashboard */}
 
         <Route
           path="/faculty/dashboard"
@@ -312,6 +369,8 @@ function App() {
           }
         />
 
+        {/* Faculty Materials */}
+
         <Route
           path="/faculty/materials"
           element={
@@ -320,6 +379,8 @@ function App() {
             </ProtectedRoute>
           }
         />
+
+        {/* Faculty Announcements */}
 
         <Route
           path="/faculty/announcements"
@@ -330,6 +391,8 @@ function App() {
           }
         />
 
+        {/* Faculty Assignments */}
+
         <Route
           path="/faculty/assignments"
           element={
@@ -338,6 +401,8 @@ function App() {
             </ProtectedRoute>
           }
         />
+
+        {/* Faculty Profile */}
 
         <Route
           path="/faculty/profile"
