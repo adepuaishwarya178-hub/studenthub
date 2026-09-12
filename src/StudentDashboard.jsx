@@ -29,7 +29,7 @@ function StudentDashboard() {
 
     // ================= FETCH STUDENT =================
 
-    fetch("http://localhost:5000/api/students")
+    fetch("https://studenthub-dvdp.onrender.com/api/students")
       .then((response) => response.json())
       .then((students) => {
         if (students.length > 0) {
@@ -44,7 +44,7 @@ function StudentDashboard() {
 
     // ================= FETCH ASSIGNMENTS =================
 
-    fetch("http://localhost:5000/api/assignments")
+    fetch("https://studenthub-dvdp.onrender.com/api/assignments")
       .then((response) => response.json())
       .then((assignments) => {
         const pending = assignments.filter(

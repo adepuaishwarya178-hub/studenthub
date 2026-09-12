@@ -19,7 +19,7 @@ function FacultyAssignments() {
   const fetchAssignments = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5000/api/assignments"
+        "https://studenthub-dvdp.onrender.com/api/assignments"
       );
 
       const data = await response.json();
@@ -64,7 +64,7 @@ function FacultyAssignments() {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/assignments",
+        "https://studenthub-dvdp.onrender.com/api/assignments",
         {
           method: "POST",
           headers: {
@@ -120,7 +120,7 @@ function FacultyAssignments() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/assignments/${id}`,
+        `https://studenthub-dvdp.onrender.com/api/assignments/${id}`,
         {
           method: "DELETE",
         }

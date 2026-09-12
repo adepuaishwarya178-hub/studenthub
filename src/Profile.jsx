@@ -78,12 +78,12 @@ function Profile() {
       // If your backend has student ID
       const studentId = user._id;
 
-      let url = "http://https://studenthub-backend-ubpy.onrender.com/api/students";
+      let url = "https://studenthub-dvdp.onrender.com/api/students" ;
 
       let method = "POST";
 
       if (studentId) {
-        url = `http://https://studenthub-backend-ubpy.onrender.com/api/students/${studentId}`;
+        url = `https://studenthub-dvdp.onrender.com/api/students/${studentId}`;
         method = "PUT";
       }
 

@@ -14,7 +14,7 @@ function FacultyMaterials() {
   const [materials, setMaterials] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const API_URL = "http://localhost:5000";
+  const API_URL = "https://studenthub-dvdp.onrender.com";
 
   const subjects = [
     "Computer Networks",

@@ -11,7 +11,7 @@ function Assignments() {
   const fetchAssignments = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5000/api/assignments"
+        "https://studenthub-dvdp.onrender.com/api/assignments"
       );
 
       const data = await response.json();

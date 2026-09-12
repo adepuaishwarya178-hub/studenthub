@@ -18,7 +18,7 @@ function FacultyAnnouncements() {
   const fetchAnnouncements = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5000/api/announcements"
+        `https://studenthub-dvdp.onrender.com/api/announcements/${id}`
       );
 
       const data = await response.json();
@@ -63,7 +63,7 @@ function FacultyAnnouncements() {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/announcements",
+        `https://studenthub-dvdp.onrender.com/api/announcements/${id}`,
         {
           method: "POST",
           headers: {
@@ -118,7 +118,7 @@ function FacultyAnnouncements() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/announcements/${id}`,
+        'https://studenthub-dvdp.onrender.com/api/announcements/${id}', 
         {
           method: "DELETE",
         }

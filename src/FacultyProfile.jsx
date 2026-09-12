@@ -14,7 +14,7 @@ function FacultyProfile() {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/faculty")
+    fetch("https://studenthub-dvdp.onrender.com/api/faculty")
       .then((response) => response.json())
       .then((data) => {
         if (data) {
@@ -44,7 +44,8 @@ function FacultyProfile() {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/faculty",
+
+        "https://studenthub-dvdp.onrender.com/api/faculty",
         {
           method: "POST",
           headers: {
