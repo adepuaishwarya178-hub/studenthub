@@ -7,7 +7,7 @@ function AIMaterials() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/materials")
+    fetch("https://studenthub-dvdp.onrender.com/api/materials")
       .then((response) => response.json())
       .then((data) => {
         if (Array.isArray(data)) {
@@ -157,7 +157,7 @@ function AIMaterials() {
                 {/* ACTION */}
 
                 <a
-                  href={`http://localhost:5000/${String(
+                  href={`https://studenthub-dvdp.onrender.com/${String(
                     material.filePath || ""
                   ).replace(/\\/g, "/")}`}
                   target="_blank"
