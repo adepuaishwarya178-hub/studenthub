@@ -89,12 +89,20 @@ function StudyMaterials() {
 
   // ================= PDF URL =================
 
-  const getPdfUrl = (filePath) => {
-    if (!filePath) return "#";
+  const getPdfUrl = (material) => {
+    // If this is a static PDF from public/pdfs,
+    // use the frontend URL.
 
-    const cleanPath = filePath.replace(/\\/g, "/");
+    if (material.fileName) {
+      const fileName = String(material.fileName)
+        .replace(/\\/g, "/")
+        .split("/")
+        .pop();
 
-    return `https://studenthub-dvdp.onrender.com/${cleanPath}`;
+      return `/pdfs/${fileName}`;
+    }
+
+    return "#";
   };
 
   // ================= UI =================
@@ -105,7 +113,6 @@ function StudyMaterials() {
       {/* ================= NAVBAR ================= */}
 
       <nav className="materials-nav">
-
         <div className="logo">
           🎓 StudentHub
         </div>
@@ -113,7 +120,6 @@ function StudyMaterials() {
         <Link to="/dashboard">
           ← Dashboard
         </Link>
-
       </nav>
 
       {/* ================= MAIN ================= */}
@@ -123,7 +129,6 @@ function StudyMaterials() {
         {/* ================= HEADING ================= */}
 
         <div className="materials-heading">
-
           <h1>
             📚 Study Materials
           </h1>
@@ -131,19 +136,15 @@ function StudyMaterials() {
           <p>
             Find your notes and learning resources easily.
           </p>
-
         </div>
 
         {/* ================= LOADING ================= */}
 
         {loading ? (
-
           <div className="materials-loading">
             Loading materials... ⏳
           </div>
-
         ) : (
-
           <div className="subject-grid">
 
             {subjects.map((subject, index) => {
@@ -152,7 +153,6 @@ function StudyMaterials() {
                 getSubjectMaterials(subject.name);
 
               return (
-
                 <div
                   className="subject-card"
                   key={index}
@@ -182,11 +182,9 @@ function StudyMaterials() {
 
                     {subject.units.map(
                       (unit, unitIndex) => (
-
                         <p key={unitIndex}>
                           📄 {unit}
                         </p>
-
                       )
                     )}
 
@@ -229,9 +227,7 @@ function StudyMaterials() {
                             {/* VIEW PDF */}
 
                             <a
-                              href={getPdfUrl(
-                                material.filePath
-                              )}
+                              href={getPdfUrl(material)}
                               target="_blank"
                               rel="noopener noreferrer"
                               className="view-pdf"
@@ -255,13 +251,10 @@ function StudyMaterials() {
                   )}
 
                 </div>
-
               );
-
             })}
 
           </div>
-
         )}
 
       </main>
